@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button[type="reset"] {
+            background-color: #f44336;
+            color: white;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Female</label>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="qualification">Qualification:</label>
+                <select id="qualification" name="qualification" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="highschool">High School</option>
+                    <option value="undergrad">Undergraduate</option>
+                    <option value="postgrad">Postgraduate</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to all terms and conditions</label>
+            </div>
+
+            <div class="btn-group">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+
+        <div id="result" class="result">
+            <h3>Form Data:</h3>
+            <p><strong>First Name:</strong> <span id="resFirstName"></span></p>
+            <p><strong>Last Name:</strong> <span id="resLastName"></span></p>
+            <p><strong>Gender:</strong> <span id="resGender"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="resDOB"></span></p>
+            <p><strong>Mobile Number:</strong> <span id="resMobile"></span></p>
+            <p><strong>Qualification:</strong> <span id="resQualification"></span></p>
+            <p><strong>Terms Accepted:</strong> <span id="resTerms"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form values
+            const firstname = document.getElementById('firstname').value;
+            const lastname = document.getElementById('lastname').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const dob = document.getElementById('dob').value;
+            const mobile = document.getElementById('mobile').value;
+            const qualification = document.getElementById('qualification').value;
+            const terms = document.getElementById('terms').checked ? 'Yes' : 'No';
+
+            // Display the results
+            document.getElementById('resFirstName').textContent = firstname;
+            document.getElementById('resLastName').textContent = lastname;
+            document.getElementById('resGender').textContent = gender;
+            document.getElementById('resDOB').textContent = dob;
+            document.getElementById('resMobile').textContent = mobile;
+            document.getElementById('resQualification').textContent = qualification;
+            document.getElementById('resTerms').textContent = terms;
+
+            // Show the result section
+            document.getElementById('result').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
